@@ -5,6 +5,7 @@ import { Root } from '@/pages/Root';
 import { Todos } from '@/pages/Todos';
 
 import './App.css';
+import { Navigate } from 'react-router-dom';
 
 function App() {
   return (
@@ -18,12 +19,16 @@ function App() {
             },
             {
               element: <Todos />,
-              path: AppRoutes.TODOS,
+              path: AppRoutes.BOOKINGS,
             },
           ],
           path: AppRoutes.ROOT,
           element: <Root />,
         },
+        {
+          path: '*',
+          element: <Navigate to={AppRoutes.HOME} replace />
+        }
       ]}
     />
   );
