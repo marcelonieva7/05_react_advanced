@@ -9,4 +9,3 @@ const Home:react.FC = () => {
 };
   
 export { Home };
-  
