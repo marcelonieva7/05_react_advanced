@@ -14,6 +14,7 @@ export default defineConfig({
       pages: path.resolve(__dirname, "./src/pages"),
       types: `${path.resolve(__dirname, "./src/@types")}`,
       libs: `${path.resolve(__dirname, "./src/libs")}`,
+      assets: `${path.resolve(__dirname, "./src/assets")}`,
     }
   }
 })

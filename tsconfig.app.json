@@ -31,6 +31,7 @@
       "types/*": ["src/@types/*"],
       "public/*": ["public/*"],
       "libs": ["src/libs/*"],
+      "assets": ["src/assets/*"],
     }
 
   },
