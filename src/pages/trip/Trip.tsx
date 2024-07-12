@@ -1,6 +1,7 @@
-import { FC, useEffect } from "react";
-import { TripInfo } from '@/components/tripInfo/tripInfo';
+import { type FC, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { TripInfo } from '@/components/tripInfo/tripInfo';
+import { BookTripModal } from "@/components/bookTripModal/bookTripModal";
 import { AppRoutes } from "@/libs/router/appRoutes";
 
 import styles from './styles/trip.module.css'
@@ -14,6 +15,7 @@ const TripNotFound = () => (
 )
 
 const Trip:FC = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const { id } = useParams();
   const trip = trips.find(trip => trip.id === id);
@@ -27,7 +29,12 @@ const Trip:FC = () => {
   return (
     <main className={styles["trip-page"]}>
       <h1 className="visually-hidden">Travel App</h1>
-      {trip ? <TripInfo {...trip} /> : <TripNotFound />}
+      {trip ? (
+        <>
+          <TripInfo {...trip} setIsOpen={setIsOpen} />
+          <BookTripModal isOpen={isOpen} setIsOpen={setIsOpen} trip={trip} />
+        </>
+      ) : <TripNotFound />}
     </main>
   )
 }
