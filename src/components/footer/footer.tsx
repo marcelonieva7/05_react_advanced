@@ -1,5 +1,5 @@
 import { type FC, type HTMLAttributes } from 'react';
-import heart from 'assets/images/heart.svg'
+import heart from '@/assets/images/heart.svg'
 
 import styles from './styles/footer.module.css';
 
