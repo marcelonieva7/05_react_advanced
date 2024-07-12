@@ -1,0 +1,1 @@
+declare const styles: {readonly 'profileNav': string;readonly 'profileNav__list': string;readonly 'profileNav__item': string;readonly 'profileNav__signOut': string;};export default styles;

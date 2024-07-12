@@ -1,0 +1,37 @@
+.profileNav {
+    position: relative;
+    cursor: pointer;
+}
+
+.profileNav:hover .profileNav__list,
+.profileNav:focus .profileNav__list,
+.profileNav__list:focus-within .profileNav__list {
+    display: block;
+}
+
+.profileNav__list {
+    position: absolute;
+    top: 90%;
+    right: 15px;
+    z-index: 5;
+    display: none;
+    min-width: 150px;
+    padding: 0;
+    list-style: none;
+    background-color: var(--color-white);
+    border-radius: 1px;
+    box-shadow: var(--shadow);
+}
+
+.profileNav__item {
+    padding: 0 10px 10px;
+    text-align: center;
+  }
+  
+.profileNav__item:first-child {
+    padding-top: 10px;
+}
+
+.profileNav__signOut {
+    min-height: auto;
+}
