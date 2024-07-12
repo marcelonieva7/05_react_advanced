@@ -1,8 +1,8 @@
-import { AppRoutes } from 'libs/router/appRoutes';
-import { RouterProvider } from 'libs/router/routerProvider';
-import { Home } from 'pages/Home';
-import { Root } from 'pages/Root';
-import { Todos } from 'pages/Todos';
+import { AppRoutes } from '@/libs/router/appRoutes';
+import { RouterProvider } from '@/libs/router/routerProvider';
+import { Home } from '@/pages/home/Home';
+import { Root } from '@/pages/Root';
+import { Todos } from '@/pages/Todos';
 
 import './App.css';
 import { Navigate } from 'react-router-dom';
