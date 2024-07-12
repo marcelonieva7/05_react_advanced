@@ -1,6 +1,6 @@
 import { type FC, type HTMLAttributes } from 'react';
-import { Navbar } from '../navbar/navbar';
-import { AppRoutes } from 'libs/router/appRoutes';
+import { Navbar } from '@/components/navbar/navbar';
+import { AppRoutes } from '@/libs/router/appRoutes';
 import { Link } from 'react-router-dom';
 
 import styles from './styles/header.module.css';
