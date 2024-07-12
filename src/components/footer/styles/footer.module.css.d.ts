@@ -1,0 +1,1 @@
+declare const styles: {readonly 'footer': string;readonly 'footer__text': string;readonly 'footer__icon': string;readonly 'footer__link': string;};export default styles;
