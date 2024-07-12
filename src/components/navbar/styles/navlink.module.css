@@ -1,0 +1,11 @@
+.navHeader__item {
+    border-left: 1px solid var(--color-gray);
+}
+
+.navHeader__inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 80px;
+    height: 100%;
+}

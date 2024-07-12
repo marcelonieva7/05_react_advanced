@@ -1,0 +1,1 @@
+declare const styles: {readonly 'navHeader__item': string;readonly 'navHeader__inner': string;};export default styles;

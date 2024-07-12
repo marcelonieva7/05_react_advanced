@@ -1,0 +1,13 @@
+.header__nav {
+    position: absolute;
+    right: 0;
+    height: 100%;
+}
+
+.navHeader__list {
+    display: flex;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
