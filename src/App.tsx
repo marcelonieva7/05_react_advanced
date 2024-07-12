@@ -3,9 +3,9 @@ import { RouterProvider } from '@/libs/router/routerProvider';
 import { Home } from '@/pages/home/Home';
 import { Root } from '@/pages/Root';
 import { Todos } from '@/pages/Todos';
+import { Navigate } from 'react-router-dom';
 
 import './App.css';
-import { Navigate } from 'react-router-dom';
 
 function App() {
   return (

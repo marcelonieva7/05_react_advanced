@@ -1,20 +1,10 @@
 import { type FC, useState } from 'react';
 import { TripsFilter } from '@/components/tripsFilter/tripsFilter';
 import { Tripcard } from '@/components/tripCard/tripCard'
+import { type Trip } from '@/@types/';
 
 import styles from './styles/home.module.css'
 import trips from '@/assets/data/trips.json';
-
-interface Trip {
-  id: string;
-  title: string;
-  description: string;
-  level: string;
-  duration: number;
-  price: number;
-  image: string;
-  createdAt: string;
-}
 
 const Home: FC = () => {
   const [filteredTrips, setFilteredTrips] = useState<Trip[]>(trips);
@@ -30,8 +20,9 @@ const Home: FC = () => {
 
       if (duration) {
         const [min, max] = duration.split('_x_').map(Number);
+
         if (max) {
-          matchesDuration = trip.duration >= min && trip.duration <= max;
+          matchesDuration = trip.duration >= min && trip.duration < max;
         } else {
           matchesDuration = trip.duration >= min;
         }
