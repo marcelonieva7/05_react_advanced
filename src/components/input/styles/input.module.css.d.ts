@@ -1,0 +1,1 @@
+declare const styles: {readonly 'input': string;readonly 'input__heading': string;};export default styles;
