@@ -1,0 +1,1 @@
+declare const styles: {readonly 'header': string;readonly 'header__inner': string;readonly 'header__logo': string;};export default styles;
