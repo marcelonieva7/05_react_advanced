@@ -36,6 +36,7 @@ const Home: FC = () => {
 
   return (
     <main>
+      <h1 className="visually-hidden">Travel App</h1>
       <TripsFilter onFilterChange={handleFilterChange} />
       <section className={styles["trips"]}>
         <h2 className="visually-hidden">Trips List</h2>
