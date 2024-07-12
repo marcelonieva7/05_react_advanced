@@ -1,8 +1,8 @@
 import { type FC, type HTMLAttributes } from 'react';
-import { ProfileNav } from '../profileNav/profileNav';
-import { AppRoutes } from 'libs/router/appRoutes';
+import { ProfileNav } from '@/components/profileNav/profileNav';
+import { AppRoutes } from '@/libs/router/appRoutes';
 import { Link } from 'react-router-dom';
-import briefcase from 'assets/images/briefcase.svg'
+import briefcase from '@/assets/images/briefcase.svg'
 
 import styles from './styles/navbar.module.css';
 import navlinkStyles from './styles/navlink.module.css';
