@@ -1,11 +1,15 @@
-import { FC } from "react";
-import { Trip } from "@/@types";
+import { type FC } from "react";
+import { type Trip } from "@/@types";
 
 import styles from './styles/tripInfo.module.css'
 import stylesTripCard from '@/components/tripCard/styles/tripCard.module.css'
 import stylesBtn from '@/components/button/styles/button.module.css'
 
-const TripInfo:FC<Trip> = ({ title, image, description, duration, level, price }) => {
+type TripInfoProps = {
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
+} & Trip;
+
+const TripInfo:FC<TripInfoProps> = ({ title, image, description, duration, level, price, setIsOpen }) => {
   return (
     <div className={styles["trip"]}>
       <img
@@ -49,6 +53,7 @@ const TripInfo:FC<Trip> = ({ title, image, description, duration, level, price }
         <button
           data-test-id="trip-details-button"
           className={[styles["trip__button"], stylesBtn.button].join(' ')}
+          onClick={() => setIsOpen(true)}
         >
           Book a trip
         </button>

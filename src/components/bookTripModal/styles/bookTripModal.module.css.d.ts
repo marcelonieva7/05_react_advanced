@@ -1,0 +1,1 @@
+declare const styles: {readonly 'modal': string;readonly 'book-trip-popup': string;readonly 'book-trip-popup__close': string;readonly 'book-trip-popup__form': string;readonly 'book-trip-popup__total': string;readonly 'book-trip-popup__total-value': string;};export default styles;
