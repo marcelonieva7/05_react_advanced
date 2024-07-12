@@ -1,11 +1,11 @@
 import { type FC, type HTMLAttributes } from 'react';
 import { Link } from 'react-router-dom';
-import { AppRoutes } from 'libs/router/appRoutes';
-import user from 'assets/images/user.svg'
+import { AppRoutes } from '@/libs/router/appRoutes';
+import user from '@/assets/images/user.svg'
 
 import styles from './styles/profilenav.module.css';
-import stylesBtn from 'components/button/styles/button.module.css'
-import stylesNavLink from 'components/navbar/styles/navlink.module.css'
+import stylesBtn from '@/components/button/styles/button.module.css'
+import stylesNavLink from '@/components/navbar/styles/navlink.module.css'
 
 interface ProfileNavProps extends HTMLAttributes<HTMLDivElement> {
   'data-test-id'?: string;
