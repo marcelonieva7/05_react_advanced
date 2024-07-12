@@ -1,0 +1,1 @@
+declare const styles: {readonly 'trips-filter': string;readonly 'trips-filter__form': string;readonly 'trips-filter__search': string;readonly 'select': string;};export default styles;
