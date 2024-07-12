@@ -36,7 +36,7 @@ const Navbar: FC<NavbarProps> = ({ 'data-test-id': dataTestId, className, ...pro
           <img src={briefcase} alt="bookings" />
         </NavLink>
         <li className={navlinkStyles.navHeader__item} title="Profile">
-          <ProfileNav />
+          <ProfileNav data-test-id='header-profile-nav' />
         </li>
       </ul>
     </nav>

@@ -16,7 +16,7 @@ const Header: FC<HeaderProps> = ({ 'data-test-id': dataTestId, className, ...pro
         <Link data-test-id="header-logo" to={AppRoutes.HOME} className={styles.header__logo}>
           Travel App
         </Link>
-        <Navbar />
+        <Navbar data-test-id='header-nav' />
       </div>
     </header>
   );
