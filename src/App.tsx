@@ -3,6 +3,7 @@ import { RouterProvider } from '@/libs/router/routerProvider';
 import { Home } from '@/pages/home/Home';
 import { Root } from '@/pages/Root';
 import { Todos } from '@/pages/Todos';
+import { Trip } from './pages/trip/Trip';
 import { Navigate } from 'react-router-dom';
 
 import './App.css';
@@ -20,6 +21,10 @@ function App() {
             {
               element: <Todos />,
               path: AppRoutes.BOOKINGS,
+            },
+            {
+              element: <Trip />,
+              path: `${AppRoutes.TRIP}/:id`,
             },
           ],
           path: AppRoutes.ROOT,

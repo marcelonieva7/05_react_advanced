@@ -1,0 +1,1 @@
+declare const styles: {readonly 'trip-page': string;};export default styles;

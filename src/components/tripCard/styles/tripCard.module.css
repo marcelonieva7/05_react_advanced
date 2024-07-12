@@ -32,7 +32,7 @@
 .trip-info__content {
     display: flex;
     font-weight: 300;
-  }
+}
   
 .trip-info__duration {
     min-width: 120px;
