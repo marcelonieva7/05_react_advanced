@@ -29,7 +29,7 @@ const [bookings, setBookings] = useState<Booking[]>([]);
             },
             {
               element: <Trip setBookings={setBookings} />,
-              path: `${AppRoutes.TRIP}/:id`,
+              path: `${AppRoutes.TRIP}/:tripId`,
             },
             {
               element: <SignIn />,

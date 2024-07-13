@@ -23,8 +23,8 @@ const Trip:FC<TripProps> = ({ setBookings }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [count, setCount] = useState(5);
   const navigate = useNavigate();
-  const { id } = useParams();
-  const trip = trips.find(trip => trip.id === id);
+  const { tripId } = useParams();
+  const trip = trips.find(trip => trip.id === tripId);
 
   useEffect(() => {
     if (!trip) {
@@ -51,7 +51,9 @@ const Trip:FC<TripProps> = ({ setBookings }) => {
             setBookings={setBookings}
           />
         </>
-      ) : <TripNotFound count={count} />}
+        ) :
+        <TripNotFound count={count} />
+      }
     </main>
   )
 }
