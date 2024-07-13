@@ -1,0 +1,1 @@
+declare const styles: {readonly 'sign-up-page': string;readonly 'sign-in-page': string;readonly 'sign-up-form': string;readonly 'sign-in-form': string;readonly 'sign-up-form__title': string;readonly 'sign-in-form__title': string;readonly 'sign-up-form__link': string;readonly 'sign-in-form__link': string;};export default styles;
