@@ -10,12 +10,15 @@ interface BookingsProps {
 }
 
 const Bookings:FC<BookingsProps> = ({ setBookings, bookings }) => {
+  const sortedBookings = bookings.sort((a, b) => {
+    return new Date(a.date).valueOf() - new Date(b.date).valueOf()
+  })
   return (
     <main className={styles["bookings-page"]}>
       <h1 className="visually-hidden">Travel App</h1>
       <ul className={styles["bookings__list"]}>
-        {bookings.length > 0 ?
-          bookings.map(booking => <Booking key={booking.id} booking={booking} setBookings={setBookings} />)
+        {sortedBookings.length > 0 ?
+          sortedBookings.map(booking => <Booking key={booking.id} booking={booking} setBookings={setBookings} />)
           : 
           <h1>No bookings yet</h1>
         }
