@@ -28,7 +28,9 @@ const BookTripModal:FC<BookTripModalProps> = ({ isOpen, setIsOpen, trip, setBook
   const [totalPrice, setTotalPrice] = useState(trip.price);
   const navigate = useNavigate();
 
-  const minDate = new Date().toISOString().split('T')[0];
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  const minDate = tomorrow.toISOString().split('T')[0];
   const { title, duration, level, price } = trip;
 
   const handleClose = (): void => {
