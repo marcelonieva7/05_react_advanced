@@ -1,4 +1,5 @@
 import { type FC, useEffect, useState } from "react";
+import { type Booking } from "@/@types";
 import { useNavigate, useParams } from "react-router-dom";
 import { TripInfo } from '@/components/tripInfo/tripInfo';
 import { BookTripModal } from "@/components/bookTripModal/bookTripModal";
@@ -7,6 +8,10 @@ import { AppRoutes } from "@/libs/router/appRoutes";
 import styles from './styles/trip.module.css'
 import trips from '@/assets/data/trips.json';
 
+interface TripProps {
+  setBookings: React.Dispatch<React.SetStateAction<Booking[]>>
+}
+
 const TripNotFound: FC<{ count: number}> = ({ count }) => (
   <>
     <h2>Trip not found</h2>
@@ -14,7 +19,7 @@ const TripNotFound: FC<{ count: number}> = ({ count }) => (
   </>
 )
 
-const Trip:FC = () => {
+const Trip:FC<TripProps> = ({ setBookings }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [count, setCount] = useState(5);
   const navigate = useNavigate();
@@ -39,7 +44,12 @@ const Trip:FC = () => {
       {trip ? (
         <>
           <TripInfo {...trip} setIsOpen={setIsOpen} />
-          <BookTripModal isOpen={isOpen} setIsOpen={setIsOpen} trip={trip} />
+          <BookTripModal
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
+            trip={trip}
+            setBookings={setBookings}
+          />
         </>
       ) : <TripNotFound count={count} />}
     </main>
