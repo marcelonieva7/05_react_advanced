@@ -22,9 +22,9 @@ const Home: FC = () => {
         const [min, max] = duration.split('_x_').map(Number);
 
         if (max) {
-          matchesDuration = trip.duration >= min && trip.duration < max;
+          matchesDuration = trip.duration > min && trip.duration <= max;
         } else {
-          matchesDuration = trip.duration >= min;
+          matchesDuration = trip.duration > min;
         }
       }
 
