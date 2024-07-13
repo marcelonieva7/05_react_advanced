@@ -1,0 +1,1 @@
+declare const styles: {readonly 'booking': string;readonly 'booking__title': string;readonly 'booking__cancel': string;readonly 'booking__guests': string;readonly 'booking__date': string;readonly 'booking__total': string;};export default styles;
