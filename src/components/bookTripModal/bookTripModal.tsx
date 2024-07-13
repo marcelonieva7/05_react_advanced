@@ -2,7 +2,7 @@ import { useState, type FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Input } from '../input/input';
 import { AppRoutes } from '@/libs/router/appRoutes';
-import { type Trip } from '@/@types';
+import { type Booking, type Trip } from '@/@types';
 
 import styles from './styles/bookTripModal.module.css';
 import stylesTrip from '@/components/tripCard/styles/tripCard.module.css';
@@ -10,18 +10,26 @@ import stylesBtn from '@/components/button/styles/button.module.css'
 
 interface BookTripModalProps {
   isOpen: boolean;
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
   trip: Trip;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
+  setBookings: React.Dispatch<React.SetStateAction<Booking[]>>;
 }
 
-const BookTripModal:FC<BookTripModalProps> = ({ isOpen, setIsOpen, trip }) => {
+const generateMockId = (): string => {
+  const randomString = Math.random().toString(36);
+  return `${Date.now()}_${randomString.substring(2, 11)}`;
+};
+
+const USER_ID = "1dd97a12-848f-4a1d-8a7d-34a2132fca94";
+
+const BookTripModal:FC<BookTripModalProps> = ({ isOpen, setIsOpen, trip, setBookings }) => {
   const [guests, setGuests] = useState(1);
   const [date, setDate] = useState("");
-  const [value, setValue] = useState(trip.price);
+  const [totalPrice, setTotalPrice] = useState(trip.price);
   const navigate = useNavigate();
 
   const minDate = new Date().toISOString().split('T')[0];
-  const { title, duration, level } = trip
+  const { title, duration, level, price } = trip;
 
   const handleClose = (): void => {
     setIsOpen(false)
@@ -30,7 +38,7 @@ const BookTripModal:FC<BookTripModalProps> = ({ isOpen, setIsOpen, trip }) => {
   const handleGuestsChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const newGuests = Number(e.target.value)
     setGuests(newGuests)
-    setValue(trip.price * newGuests)
+    setTotalPrice(price * newGuests)
   }
 
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -40,6 +48,24 @@ const BookTripModal:FC<BookTripModalProps> = ({ isOpen, setIsOpen, trip }) => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault()
+    const id = generateMockId()
+    console.log(id);
+    const newBooking: Booking = {
+      id,
+      userId: USER_ID,
+      tripId: trip.id,
+      guests,
+      totalPrice,
+      createdAt: new Date().toISOString(),
+      date: new Date(date).toISOString(),
+      trip: {
+        duration,
+        price,
+        title
+      }
+    }
+
+    setBookings(prev => [...prev, newBooking])
     navigate(AppRoutes.BOOKINGS)
   }
   
@@ -107,7 +133,7 @@ const BookTripModal:FC<BookTripModalProps> = ({ isOpen, setIsOpen, trip }) => {
                 data-test-id="book-trip-popup-total-value"
                 className={styles["book-trip-popup__total-value"]}
               >
-                {`$${value}`}
+                {`$${totalPrice}`}
               </output>
             </span>
             <button
