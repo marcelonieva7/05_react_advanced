@@ -1,14 +1,17 @@
+import { useState } from 'react';
+import { Navigate } from 'react-router-dom';
 import { AppRoutes } from '@/libs/router/appRoutes';
 import { RouterProvider } from '@/libs/router/routerProvider';
 import { Home } from '@/pages/home/Home';
+import { Bookings } from '@/pages/bookings/bookings';
 import { Root } from '@/pages/Root';
-import { Todos } from '@/pages/Todos';
-import { Trip } from './pages/trip/Trip';
-import { Navigate } from 'react-router-dom';
+import { Trip } from '@/pages/trip/Trip';
+import { type Booking } from '@/@types';
 
 import './App.css';
 
-function App() {
+function App(): JSX.Element {
+const [bookings, setBookings] = useState<Booking[]>([]);
   return (
     <RouterProvider
       routes={[
@@ -19,11 +22,11 @@ function App() {
               path: AppRoutes.HOME,
             },
             {
-              element: <Todos />,
+              element: <Bookings setBookings={setBookings} bookings={bookings} />,
               path: AppRoutes.BOOKINGS,
             },
             {
-              element: <Trip />,
+              element: <Trip setBookings={setBookings} />,
               path: `${AppRoutes.TRIP}/:id`,
             },
           ],
