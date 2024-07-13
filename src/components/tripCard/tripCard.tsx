@@ -22,6 +22,7 @@ const Tripcard: FC<TripcardProps> = ({ image, title, level, duration, price, id 
     <li data-test-id="trip-card" className={styles["trip-card"]}>
       <img
         data-test-id="trip-card-image"
+        className={styles["trip-card__img"]}
         src={image}
         alt="trip photo"
       />
