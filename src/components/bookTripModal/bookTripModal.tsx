@@ -51,7 +51,6 @@ const BookTripModal:FC<BookTripModalProps> = ({ isOpen, setIsOpen, trip, setBook
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault()
     const id = generateMockId()
-    console.log(id);
     const newBooking: Booking = {
       id,
       userId: USER_ID,

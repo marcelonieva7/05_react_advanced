@@ -47,7 +47,7 @@ const SignIn: FC = () => {
         </Button>
       </form>
       <span>
-        Don't have an account?
+        Don't have an account?&nbsp;
         <Link
           data-test-id="auth-sign-up-link"
           to={AppRoutes.SIGN_UP}

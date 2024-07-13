@@ -29,16 +29,17 @@
 
 /* fonts */
 
-@font-face{
+/* not loaded beacause initial repose uses sans-serif */
+/* @font-face{
   font-family: "Assistant";
-  src:local("Assistant"),
-  url('./assets/fonts/Assistant-VariableFont_wght.ttf') 
-}
+  src: local("Assistant"),
+  url('./assets/fonts/Assistant-VariableFont_wght.ttf')
+} */
 
 @font-face{
   font-family: "Playfair Display";
   src: local("Playfair Display"),
-  url('./assets/fonts/PlayfairDisplay-VariableFont_wght.ttf') 
+  url('./assets/fonts/PlayfairDisplay-VariableFont_wght.ttf')
 }
 
 /* scaffolding */

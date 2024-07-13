@@ -57,14 +57,14 @@ const SignUp: FC = () => {
         </Button>
       </form>
       <span>
-        Already have an account?
+        Already have an account?&nbsp;
         <Link
           data-test-id="auth-sign-in-link"
           to={AppRoutes.SIGN_IN}
           className={styles["sign-up-form__link"]}
-          >Sign In
-        </Link
         >
+          Sign In
+        </Link>
       </span>
     </main>
   )
