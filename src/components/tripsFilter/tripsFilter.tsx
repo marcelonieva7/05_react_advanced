@@ -21,13 +21,10 @@ const TripsFilter: FC<TripsFilterProps> = ({ onFilterChange }) => {
   });
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-
-    setFilters((prevFilters) => {
-      const newFilters = { ...prevFilters, [name]: value };
-      onFilterChange(newFilters);
-      return newFilters;
-    });
+    const { name, value } = e.target;    
+    const newFilters = { ...filters, [name]: value };
+    onFilterChange(newFilters);
+    setFilters((prevFilters) => ({ ...prevFilters, [name]: value }));
   };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {

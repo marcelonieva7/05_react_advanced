@@ -13,7 +13,8 @@ const Home: FC = () => {
     const { search, duration, level } = filters;
 
     const filtered = trips.filter((trip) => {
-      const matchesSearch = trip.title.toLowerCase().includes(search.toLowerCase());
+      const regex = new RegExp(search, 'i');
+      const matchesSearch = trip.title.search(regex) !== -1;
       const matchesLevel = !level || trip.level === level;
 
       let matchesDuration = true;
