@@ -5,6 +5,7 @@ import { RouterProvider } from '@/libs/router/routerProvider';
 import { Home } from '@/pages/home/Home';
 import { Bookings } from '@/pages/bookings/bookings';
 import { Root } from '@/pages/Root';
+import { SignIn } from '@/pages/auth/signIn/signIn';
 import { Trip } from '@/pages/trip/Trip';
 import { type Booking } from '@/@types';
 
@@ -28,6 +29,10 @@ const [bookings, setBookings] = useState<Booking[]>([]);
             {
               element: <Trip setBookings={setBookings} />,
               path: `${AppRoutes.TRIP}/:id`,
+            },
+            {
+              element: <SignIn />,
+              path: AppRoutes.SIGN_IN,
             },
           ],
           path: AppRoutes.ROOT,
