@@ -44,7 +44,7 @@ const [bookings, setBookings] = useState<Booking[]>([]);
           element: <Root />,
         },
         {
-          path: '*',
+          path: AppRoutes.ANY,
           element: <Navigate to={AppRoutes.HOME} replace />
         }
       ]}
