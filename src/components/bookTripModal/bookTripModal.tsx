@@ -71,8 +71,8 @@ const BookTripModal:FC<BookTripModalProps> = ({ isOpen, setIsOpen, trip, setBook
   }
   
   return (
-    <div hidden={!isOpen} >
-      <div className={styles["modal"]}>
+    <div >
+      <div hidden={!isOpen} className={`${styles.modal} ${isOpen ? styles["modal-hidden"] : ''}`}>
         <div data-test-id="book-trip-popup" className={styles["book-trip-popup"]}>
           <button
             data-test-id="book-trip-popup-close"
