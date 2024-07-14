@@ -20,7 +20,7 @@ const Bookings:FC<BookingsProps> = ({ setBookings, bookings }) => {
         {sortedBookings.length > 0 ?
           sortedBookings.map(booking => <Booking key={booking.id} booking={booking} setBookings={setBookings} />)
           : 
-          <h1>No bookings yet</h1>
+          <h1 className={styles["bookings__empty"]}>No bookings yet</h1>
         }
       </ul>
     </main>
