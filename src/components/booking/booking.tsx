@@ -1,4 +1,4 @@
-import { type FC } from "react";
+import { useState, type FC } from "react";
 import { type Booking } from "@/@types";
 
 import styles from './styles/booking.module.css'
@@ -10,11 +10,16 @@ interface BookingProps {
 
 const Booking: FC<BookingProps> = ({ setBookings, booking }) => {
   const { guests, trip, date, totalPrice, id } = booking
+  const [isDeleting, setIsDeleting] = useState(false);
+
   const handleCancel = (): void => {
-    setBookings(prev => prev.filter(booking => booking.id !== id))
+    setIsDeleting(true);
+    setTimeout(() => {
+      setBookings(prev => prev.filter(booking => booking.id !== id));
+    }, 500);
   }
   return (
-    <li data-test-id="booking" className={styles["booking"]}>
+    <li data-test-id="booking" className={`${styles["booking"]} ${isDeleting ? styles["booking--deleting"] : ""}`}>
       <h3 data-test-id="booking-title" className={styles["booking__title"]}>{trip.title}</h3>
       <span data-test-id="booking-guests" className={styles["booking__guests"]}>
         {`${guests} guests`}
