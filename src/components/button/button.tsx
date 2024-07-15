@@ -10,7 +10,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 const Button: FC<ButtonProps> = ({ children, 'data-test-id': dataTestId, ...props }) => {
   const { className, ...btnProps } = props
   return (
-    <button data-test-id={dataTestId} className={`${styles.button} ${className}`} {...btnProps}>
+    <button data-test-id={dataTestId} className={`${styles.button} ${className || ''}`} {...btnProps}>
       {children}
     </button>
   );
