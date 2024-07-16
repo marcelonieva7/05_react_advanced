@@ -1,17 +1,27 @@
 import { type FC } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { UserSignUpRequestDto } from "@/@types/api";
+import { Link } from "react-router-dom";
 import { Input } from "@/components/input/input";
 import { Button } from "@/components/button/button";
 import { AppRoutes } from "@/libs/router/appRoutes";
+import { useAppSelector } from "@/hooks/useAppSelector";
+import { useAppDispatch } from "@/hooks/useAppDispatch";
+import { authActions } from "@/libs/redux/slices/auth";
+import { DataStatus } from "@/constants/redux";
 
 import styles from "@/pages/auth/styles/auth.module.css";
 
 const SignUp: FC = () => {
-  const navigate = useNavigate();
+  const { dataStatus : authDataStatus } = useAppSelector(({ auth }) => auth);  
+  const isLoading = authDataStatus === DataStatus.PENDING;
+  const dispatch = useAppDispatch();
   
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    navigate(AppRoutes.HOME);
+    const formData = new FormData(event.currentTarget);
+    const payload = Object.fromEntries(formData.entries()) as UserSignUpRequestDto;    
+
+    dispatch(authActions.signUp(payload));
   }
 
   return (
@@ -24,7 +34,7 @@ const SignUp: FC = () => {
           isHiddenTitle={false}
           input={{
             "data-test-id":"auth-full-name",
-            name: "full-name",
+            name: "fullName",
             type: "text",
             required: true
           }}
@@ -52,8 +62,12 @@ const SignUp: FC = () => {
             required: true
           }}
         />
-        <Button data-test-id="auth-submit" type="submit">
-          Sign Up
+        <Button
+          data-test-id="auth-submit"
+          type="submit"
+          disabled={isLoading}
+        >
+          {isLoading ? "Loading..." : "Sign Up"}
         </Button>
       </form>
       <span>
