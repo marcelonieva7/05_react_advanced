@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
+import { type Booking } from '@/@types';
 import { AppRoutes } from '@/libs/router/appRoutes';
 import { RouterProvider } from '@/libs/router/routerProvider';
 import { Home } from '@/pages/home/Home';
@@ -8,22 +9,19 @@ import { Root } from '@/pages/Root';
 import { SignIn } from '@/pages/auth/signIn/signIn';
 import { SignUp } from '@/pages/auth/signUp/signUp';
 import { Trip } from '@/pages/trip/Trip';
-import { type Booking } from '@/@types';
-import { useAppSelector } from './hooks/useAppSelector';
+import { useAppSelector } from '@/hooks/useAppSelector';
+import { storageApi } from '@/libs/storage/storage';
+import { StorageKey } from '@/constants/storage';
+import { useAppDispatch } from '@/hooks/useAppDispatch';
+import { authActions } from '@/libs/redux/slices/auth';
+import { ProtectedRoute } from '@/components/protectedRoute/protectedRoute';
+import { Loader } from '@/components/loader/loader';
 
 import './App.css';
-import { storageApi } from './libs/storage/storage';
-import { StorageKey } from './constants/storage';
-import { useAppDispatch } from './hooks/useAppDispatch';
-import { authActions } from './libs/redux/slices/auth';
-import { DataStatus } from './constants/redux';
-import { ProtectedRoute } from './components/protectedRoute/protectedRoute';
-
 function App(): JSX.Element {
   const [ bookings, setBookings ] = useState<Booking[]>([]);
-  const { user, dataStatus } = useAppSelector(({ auth }) => auth);
+  const { user, isGetAuth } = useAppSelector(({ auth }) => auth);
   const dispatch = useAppDispatch()
-  const isLoading = dataStatus === DataStatus.PENDING;
 
   useEffect(() => {
     if (storageApi.has(StorageKey.TOKEN)) {
@@ -31,7 +29,9 @@ function App(): JSX.Element {
     }
   }, [dispatch]);
 
-  return isLoading ? <div className='loader'></div> : (
+  return isGetAuth ? 
+    <Loader />
+      : (
     <RouterProvider
       routes={[
         {
