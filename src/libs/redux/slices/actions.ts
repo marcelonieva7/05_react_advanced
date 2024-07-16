@@ -1,8 +1,13 @@
+import {
+  type UserSignUpResponseDto,
+  type UserSignUpRequestDto,
+  type UserSignInResponseDto,
+  type UserSignInRequestDto
+} from '@/@types/api';
+import { type AsyncThunkConfig } from '@/@types/redux';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ActionType } from './common';
 import { StorageKey } from '@/constants/storage';
-import { type UserSignUpResponseDto, type UserSignUpRequestDto } from '@/@types/api';
-import { type AsyncThunkConfig } from '@/@types/redux';
 
 const signUp = createAsyncThunk<
   UserSignUpResponseDto,
@@ -27,4 +32,27 @@ const signUp = createAsyncThunk<
   }
 );
 
-export { signUp };
+const signIn = createAsyncThunk<
+  UserSignInResponseDto,
+  UserSignInRequestDto,
+  AsyncThunkConfig
+>(
+  ActionType.SIGN_IN,
+  async (request, { extra: { authApi, storageApi }, rejectWithValue }) => {
+    try {
+      const response = await authApi.signIn(request);
+      storageApi.set(StorageKey.TOKEN, response.token);
+
+      return response;
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error
+          ? error.message
+          : "Sign in failed, please try again"
+
+      return rejectWithValue(errorMessage);
+    }
+  }
+);
+
+export { signUp, signIn };
