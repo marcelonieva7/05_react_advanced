@@ -42,4 +42,4 @@ const storageApi = new Storage({
   storage: localStorage
 });
 
-export { storageApi };
+export { Storage, storageApi };
