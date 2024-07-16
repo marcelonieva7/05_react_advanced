@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { AppRoutes } from '@/libs/router/appRoutes';
 import { RouterProvider } from '@/libs/router/routerProvider';
@@ -12,12 +12,25 @@ import { type Booking } from '@/@types';
 import { useAppSelector } from './hooks/useAppSelector';
 
 import './App.css';
+import { storageApi } from './libs/storage/storage';
+import { StorageKey } from './constants/storage';
+import { useAppDispatch } from './hooks/useAppDispatch';
+import { authActions } from './libs/redux/slices/auth';
+import { DataStatus } from './constants/redux';
 
 function App(): JSX.Element {
   const [ bookings, setBookings ] = useState<Booking[]>([]);
-  const { user } = useAppSelector(({ auth }) => auth);
+  const { user, dataStatus } = useAppSelector(({ auth }) => auth);
+  const dispatch = useAppDispatch()
+  const isLoading = dataStatus === DataStatus.PENDING;
 
-  return (
+  useEffect(() => {
+    if (storageApi.has(StorageKey.TOKEN)) {
+      dispatch(authActions.getAuth())
+    }
+  }, [dispatch]);
+
+  return isLoading ? <div className='loader'></div> : (
     <RouterProvider
       routes={[
         {
