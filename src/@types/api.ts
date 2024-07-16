@@ -19,9 +19,12 @@ type UserSignInResponseDto = {
   token: string
 }
 
+type UserAuthenticateResponseDto = User
+
 export {
   type UserSignUpRequestDto,
   type UserSignUpResponseDto,
   type UserSignInRequestDto,
-  type UserSignInResponseDto
+  type UserSignInResponseDto,
+  type UserAuthenticateResponseDto
 }

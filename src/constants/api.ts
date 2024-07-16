@@ -7,6 +7,7 @@ const ApiPath = {
 const AuthApiPath = {
   SIGN_UP: '/sign-up',
   SIGN_IN: '/sign-in',
+  AUTHENTICATED_USER: '/authenticated-user'
 }
 
 export { API_BASE_URL, ApiPath, AuthApiPath }
