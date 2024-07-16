@@ -1,7 +1,7 @@
 import { type User } from '@/@types';
 import { type ValueOf } from '@/@types/utils';
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { signUp, signIn } from './actions';
+import { signUp, signIn, signOut } from './actions';
 import { DataStatus } from '@/constants/redux';
 
 type State = {
@@ -19,6 +19,7 @@ const initialState: State = {
 const { actions, reducer } = createSlice({
   extraReducers(builder) {
     builder
+      .addCase(signOut.fulfilled, () => initialState)
       .addMatcher(isAnyOf(signUp.pending, signIn.pending), state => {
         state.dataStatus = DataStatus.PENDING;
       })

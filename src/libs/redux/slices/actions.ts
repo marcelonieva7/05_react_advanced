@@ -55,4 +55,11 @@ const signIn = createAsyncThunk<
   }
 );
 
-export { signUp, signIn };
+const signOut = createAsyncThunk<void, void, AsyncThunkConfig>(
+  ActionType.SIGN_OUT,
+  async (_, { extra: { storageApi } }) => {
+    storageApi.drop(StorageKey.TOKEN);
+  }
+);
+
+export { signUp, signIn, signOut };
