@@ -9,7 +9,19 @@ type UserSignUpResponseDto = {
   token: string
 }
 
+type UserSignInRequestDto = {
+  email: string
+  password: string
+}
+
+type UserSignInResponseDto = {
+  user: User
+  token: string
+}
+
 export {
   type UserSignUpRequestDto,
-  type UserSignUpResponseDto
+  type UserSignUpResponseDto,
+  type UserSignInRequestDto,
+  type UserSignInResponseDto
 }
