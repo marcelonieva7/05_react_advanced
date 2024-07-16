@@ -12,7 +12,7 @@ const root = createRoot(document.querySelector('#root')!);
 
 root.render(
   <React.StrictMode>
-    <ToastContainer />
+    <ToastContainer className="notification"/>
     <Provider store={store.instance}>
       <App />
     </Provider>
