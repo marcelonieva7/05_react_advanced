@@ -7,6 +7,7 @@ import {
 import { authApi } from '@/libs/api/authApi';
 import { authReducer } from './slices/auth';
 import { storageApi, type Storage } from '@/libs/storage/storage';
+import { authErrorMiddleware } from './middleware/authErrorMiddleware';
   
 type RootReducer = {
   auth: ReturnType<typeof authReducer>;
@@ -35,7 +36,7 @@ class Store {
           thunk: {
             extraArgument: this.extraArguments
           }
-        });
+        }).prepend(authErrorMiddleware.middleware);
       },
       reducer: {
         auth: authReducer
