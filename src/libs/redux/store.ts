@@ -5,7 +5,7 @@ import {
   configureStore
 } from '@reduxjs/toolkit';          
 import { authApi } from '@/libs/api/authApi';
-import { authReducer } from './slices/auth';
+import { authReducer } from './slices/auth/auth';
 import { storageApi, type Storage } from '@/libs/storage/storage';
 import { authErrorMiddleware } from './middleware/authErrorMiddleware';
 import { notificationErrorMiddleware } from './middleware/notificationErrorMiddleware';

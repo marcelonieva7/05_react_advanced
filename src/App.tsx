@@ -13,7 +13,7 @@ import { useAppSelector } from '@/hooks/useAppSelector';
 import { storageApi } from '@/libs/storage/storage';
 import { StorageKey } from '@/constants/storage';
 import { useAppDispatch } from '@/hooks/useAppDispatch';
-import { authActions } from '@/libs/redux/slices/auth';
+import { authActions } from '@/libs/redux/slices/auth/auth';
 import { ProtectedRoute } from '@/components/protectedRoute/protectedRoute';
 import { Loader } from '@/components/loader/loader';
 

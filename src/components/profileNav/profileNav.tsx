@@ -4,7 +4,7 @@ import { AppRoutes } from '@/libs/router/appRoutes';
 import { useAppSelector } from '@/hooks/useAppSelector';
 import { useAppDispatch } from '@/hooks/useAppDispatch';
 import { Button } from '../button/button';
-import { authActions } from '@/libs/redux/slices/auth';
+import { authActions } from '@/libs/redux/slices/auth/auth';
 import userImg from '@/assets/images/user.svg'
 
 import styles from './styles/profilenav.module.css';

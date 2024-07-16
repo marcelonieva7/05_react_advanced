@@ -6,7 +6,7 @@ import { Button } from "@/components/button/button";
 import { AppRoutes } from "@/libs/router/appRoutes";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
-import { authActions } from "@/libs/redux/slices/auth";
+import { authActions } from "@/libs/redux/slices/auth/auth";
 import { DataStatus } from "@/constants/redux";
 
 import styles from "@/pages/auth/styles/auth.module.css";

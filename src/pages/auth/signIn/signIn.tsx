@@ -7,7 +7,7 @@ import { AppRoutes } from "@/libs/router/appRoutes";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import { DataStatus } from "@/constants/redux";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
-import { authActions } from "@/libs/redux/slices/auth";
+import { authActions } from "@/libs/redux/slices/auth/auth";
 
 import styles from "@/pages/auth/styles/auth.module.css";
 

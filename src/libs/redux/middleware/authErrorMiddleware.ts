@@ -1,6 +1,6 @@
 import { type Dispatch, type RootState } from '@/@types/redux'
 import { createListenerMiddleware } from '@reduxjs/toolkit'
-import { signOut } from '../slices/actions'
+import { signOut } from '../slices/auth/actions'
 import { HTTPError } from '../../http/httpError'
 import { HTTPCode } from '@/constants/http'
 
