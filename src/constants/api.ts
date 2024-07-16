@@ -1,4 +1,4 @@
-const API_BASE_URL = 'https://travel-app-api.up.railway.app/api/v1';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL as string
 
 const ApiPath = {
   AUTH: '/auth',
