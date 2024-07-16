@@ -2,12 +2,14 @@ import {
   type UserSignUpResponseDto,
   type UserSignUpRequestDto,
   type UserSignInResponseDto,
-  type UserSignInRequestDto
+  type UserSignInRequestDto,
+  UserAuthenticateResponseDto
 } from '@/@types/api';
 import { type AsyncThunkConfig } from '@/@types/redux';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ActionType } from './common';
 import { StorageKey } from '@/constants/storage';
+import { HTTPError } from '@/libs/http/httpError';
 
 const signUp = createAsyncThunk<
   UserSignUpResponseDto,
@@ -21,13 +23,9 @@ const signUp = createAsyncThunk<
       storageApi.set(StorageKey.TOKEN, response.token);
 
       return response;
-    } catch (error) {
-      const errorMessage =
-        error instanceof Error
-          ? error.message
-          : "Sign up failed, please try again"
-
-      return rejectWithValue(errorMessage);
+    } catch (err) {
+      const error = err as HTTPError
+      return rejectWithValue({...error});
     }
   }
 );
@@ -44,13 +42,9 @@ const signIn = createAsyncThunk<
       storageApi.set(StorageKey.TOKEN, response.token);
 
       return response;
-    } catch (error) {
-      const errorMessage =
-        error instanceof Error
-          ? error.message
-          : "Sign in failed, please try again"
-
-      return rejectWithValue(errorMessage);
+    } catch (err) {
+      const error = err as HTTPError
+      return rejectWithValue({...error});
     }
   }
 );
@@ -62,4 +56,20 @@ const signOut = createAsyncThunk<void, void, AsyncThunkConfig>(
   }
 );
 
-export { signUp, signIn, signOut };
+const getAuth = createAsyncThunk<
+  UserAuthenticateResponseDto,
+  void,
+  AsyncThunkConfig
+>(
+  ActionType.GET_AUTH,
+  async (_, { extra: { authApi }, rejectWithValue }) => {
+    try {
+      return await authApi.getAuthenticatedUser();
+    } catch (err) {
+      const error = err as HTTPError
+      return rejectWithValue({...error});
+    }
+  }
+);
+
+export { signUp, signIn, signOut, getAuth };

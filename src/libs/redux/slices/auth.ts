@@ -1,12 +1,13 @@
-import { signUp, signIn, signOut} from './actions.js';
-import { actions } from './auth.slice.js';
+import { signUp, signIn, signOut, getAuth} from './actions';
+import { actions } from './auth.slice';
 
 const allActions = {
   ...actions,
   signUp,
   signIn,
-  signOut
+  signOut,
+  getAuth
 };
 
 export { allActions as authActions };
-export { reducer as authReducer } from './auth.slice.js';
+export { reducer as authReducer } from './auth.slice';
