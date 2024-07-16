@@ -9,11 +9,14 @@ import { SignIn } from '@/pages/auth/signIn/signIn';
 import { SignUp } from '@/pages/auth/signUp/signUp';
 import { Trip } from '@/pages/trip/Trip';
 import { type Booking } from '@/@types';
+import { useAppSelector } from './hooks/useAppSelector';
 
 import './App.css';
 
 function App(): JSX.Element {
-const [bookings, setBookings] = useState<Booking[]>([]);
+  const [ bookings, setBookings ] = useState<Booking[]>([]);
+  const { user } = useAppSelector(({ auth }) => auth);
+
   return (
     <RouterProvider
       routes={[
@@ -32,11 +35,11 @@ const [bookings, setBookings] = useState<Booking[]>([]);
               path: `${AppRoutes.TRIP}/:tripId`,
             },
             {
-              element: <SignIn />,
+              element: user ? <Navigate to={AppRoutes.HOME} replace /> : <SignIn />,
               path: AppRoutes.SIGN_IN,
             },
             {
-              element: <SignUp />,
+              element: user ? <Navigate to={AppRoutes.HOME} replace /> : <SignUp />,
               path: AppRoutes.SIGN_UP,
             },
           ],
