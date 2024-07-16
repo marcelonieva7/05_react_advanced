@@ -3,7 +3,7 @@ import {
   type UserSignUpRequestDto,
   type UserSignInResponseDto,
   type UserSignInRequestDto,
-  UserAuthenticateResponseDto
+  type UserAuthenticateResponseDto
 } from '@/@types/api';
 import { type AsyncThunkConfig } from '@/@types/redux';
 import { createAsyncThunk } from '@reduxjs/toolkit';
@@ -25,7 +25,7 @@ const signUp = createAsyncThunk<
       return response;
     } catch (err) {
       const error = err as HTTPError
-      return rejectWithValue({...error});
+      return rejectWithValue({...error, message: error.message});
     }
   }
 );
@@ -44,7 +44,7 @@ const signIn = createAsyncThunk<
       return response;
     } catch (err) {
       const error = err as HTTPError
-      return rejectWithValue({...error});
+      return rejectWithValue({...error, message: error.message});
     }
   }
 );
@@ -67,7 +67,7 @@ const getAuth = createAsyncThunk<
       return await authApi.getAuthenticatedUser();
     } catch (err) {
       const error = err as HTTPError
-      return rejectWithValue({...error});
+      return rejectWithValue({...error, message: error.message});
     }
   }
 );
