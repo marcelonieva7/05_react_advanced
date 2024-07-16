@@ -17,6 +17,7 @@ import { StorageKey } from './constants/storage';
 import { useAppDispatch } from './hooks/useAppDispatch';
 import { authActions } from './libs/redux/slices/auth';
 import { DataStatus } from './constants/redux';
+import { ProtectedRoute } from './components/protectedRoute/protectedRoute';
 
 function App(): JSX.Element {
   const [ bookings, setBookings ] = useState<Booking[]>([]);
@@ -36,15 +37,27 @@ function App(): JSX.Element {
         {
           children: [
             {
-              element: <Home />,
+              element: (
+                <ProtectedRoute>
+                  <Home />
+                </ProtectedRoute>
+              ),
               path: AppRoutes.HOME,
             },
             {
-              element: <Bookings setBookings={setBookings} bookings={bookings} />,
+              element: (
+                <ProtectedRoute>
+                  <Bookings setBookings={setBookings} bookings={bookings} />
+                </ProtectedRoute>
+              ),
               path: AppRoutes.BOOKINGS,
             },
             {
-              element: <Trip setBookings={setBookings} />,
+              element: (
+                <ProtectedRoute>
+                  <Trip setBookings={setBookings} />
+                </ProtectedRoute>
+              ),
               path: `${AppRoutes.TRIP}/:tripId`,
             },
             {
