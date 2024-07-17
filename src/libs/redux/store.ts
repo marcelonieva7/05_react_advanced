@@ -4,11 +4,12 @@ import {
   type UnknownAction,
   configureStore
 } from '@reduxjs/toolkit';          
-import { authApi } from '@/libs/api/authApi';
+import { type AuthApi,authApi } from '@/libs/api/authApi';
 import { type TripsApi, tripsApi } from '@/libs/api/tripsApi';
 import { type BookingsApi, bookingsApi } from '@/libs/api/bookings';
 import { authReducer } from './slices/auth/auth';
 import { tripsReducer } from './slices/trips';
+import { bookingsReducer } from './slices/bookings';
 import { storageApi, type Storage } from '@/libs/storage/storage';
 import { authErrorMiddleware } from './middleware/authErrorMiddleware';
 import { notificationErrorMiddleware } from './middleware/notificationErrorMiddleware';
@@ -16,10 +17,11 @@ import { notificationErrorMiddleware } from './middleware/notificationErrorMiddl
 type RootReducer = {
   auth: ReturnType<typeof authReducer>;
   trips: ReturnType<typeof tripsReducer>;
+  bookings: ReturnType<typeof bookingsReducer>;
 };
   
 type ExtraArguments = {
-  authApi: typeof authApi;
+  authApi: AuthApi;
   tripsApi: TripsApi;
   bookingsApi: BookingsApi
   storageApi: Storage;
@@ -50,7 +52,8 @@ class Store {
       },
       reducer: {
         auth: authReducer,
-        trips: tripsReducer
+        trips: tripsReducer,
+        bookings: bookingsReducer
       }
     });
   }
