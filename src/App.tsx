@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { AppRoutes } from '@/libs/router/appRoutes';
 import { RouterProvider } from '@/libs/router/routerProvider';
@@ -18,16 +18,18 @@ import { Loader } from '@/components/loader/loader';
 
 import './App.css';
 function App(): JSX.Element {
+  const [ isLoading, setIsLoading ] = useState(true)
   const { user, isGetAuth } = useAppSelector(({ auth }) => auth);
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch()  
 
   useEffect(() => {
     if (storageApi.has(StorageKey.TOKEN)) {
       dispatch(authActions.getAuth())
     }
+    setIsLoading(false)
   }, [dispatch]);
 
-  return isGetAuth ? 
+  return (isGetAuth || isLoading) ? 
     <Loader />
       : (
     <RouterProvider
