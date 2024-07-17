@@ -1,32 +1,31 @@
 import { useState, type FC } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Input } from '../input/input';
-import { AppRoutes } from '@/libs/router/appRoutes';
-import { type Booking, type Trip } from '@/@types';
+import { type Trip } from '@/@types';
+import { type BookingAddRequestDto } from '@/@types/api'
+import { Input } from '@/components/input/input';
+import { notification } from '@/libs/notification/notificationService'
+import { useAppDispatch } from '@/hooks/useAppDispatch';
+import { bookingsActions } from '@/libs/redux/slices/bookings';
+import { DataStatus } from '@/constants/redux';
 
 import styles from './styles/bookTripModal.module.css';
 import stylesTrip from '@/components/tripCard/styles/tripCard.module.css';
 import stylesBtn from '@/components/button/styles/button.module.css'
+import { useAppSelector } from '@/hooks/useAppSelector';
 
 interface BookTripModalProps {
   isOpen: boolean;
   trip: Trip;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
-  setBookings: React.Dispatch<React.SetStateAction<Booking[]>>;
 }
 
-const generateMockId = (): string => {
-  const randomString = Math.random().toString(36);
-  return `${Date.now()}_${randomString.substring(2, 11)}`;
-};
-
-const USER_ID = "1dd97a12-848f-4a1d-8a7d-34a2132fca94";
-
-const BookTripModal:FC<BookTripModalProps> = ({ isOpen, setIsOpen, trip, setBookings }) => {
+const BookTripModal:FC<BookTripModalProps> = ({ isOpen, setIsOpen, trip }) => {
   const [guests, setGuests] = useState(1);
   const [date, setDate] = useState("");
   const [totalPrice, setTotalPrice] = useState(trip.price);
-  const navigate = useNavigate();
+
+  const dispatch = useAppDispatch();
+  const { dataStatus } = useAppSelector(({ bookings }) => bookings)
+  const isLoading = dataStatus === DataStatus.PENDING;
 
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
@@ -48,26 +47,23 @@ const BookTripModal:FC<BookTripModalProps> = ({ isOpen, setIsOpen, trip, setBook
     setDate(newDate)
   }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
-    e.preventDefault()
-    const id = generateMockId()
-    const newBooking: Booking = {
-      id,
-      userId: USER_ID,
-      tripId: trip.id,
-      guests,
-      totalPrice,
-      createdAt: new Date().toISOString(),
-      date: new Date(date).toISOString(),
-      trip: {
-        duration,
-        price,
-        title
-      }
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+    event.preventDefault()
+    const formData = new FormData(event.currentTarget);
+    const parsedFormData = Object.fromEntries(formData.entries()) as { guests: string; date: string}
+
+    const payload: BookingAddRequestDto = {
+      date: parsedFormData.date,
+      guests: Number(parsedFormData.guests),
+      tripId: trip.id
     }
 
-    setBookings(prev => [...prev, newBooking])
-    navigate(AppRoutes.BOOKINGS)
+    dispatch(bookingsActions.addBooking(payload)).then((action => {
+      if (action.meta.requestStatus === DataStatus.FULFILLED) {
+        notification.success('Trip booked successfully')
+        setIsOpen(false)
+      }
+    }))
   }
   
   return (
@@ -141,8 +137,9 @@ const BookTripModal:FC<BookTripModalProps> = ({ isOpen, setIsOpen, trip, setBook
               data-test-id="book-trip-popup-submit"
               className={stylesBtn["button"]}
               type="submit"
+              disabled={isLoading}
             >
-              Book a trip
+              {isLoading ? 'Loading...' : 'Book a trip'}
             </button>
           </form>
         </div>
