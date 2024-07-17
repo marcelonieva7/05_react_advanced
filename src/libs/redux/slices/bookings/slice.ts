@@ -8,14 +8,14 @@ import { HTTPError } from '@/libs/http/httpError';
 type State = {
   dataStatus: ValueOf<typeof DataStatus>;
   error: string | null;
-  bookings: Booking[] | null;
+  bookings: Booking[];
   isGettingBookings: boolean;
 };
 
 const initialState: State = {
   dataStatus: DataStatus.IDLE,
   error: null,
-  bookings: null,
+  bookings: [],
   isGettingBookings: false
 };
 
@@ -31,9 +31,16 @@ const { actions, reducer } = createSlice({
       .addCase(getAllBookings.pending, (state) => {
         state.isGettingBookings = true;        
       })
-      .addMatcher(isAnyOf(deleteBooking.fulfilled, addBooking.fulfilled), (state) => {
+      .addCase(deleteBooking.fulfilled, (state, { payload }) => {
         state.dataStatus = DataStatus.FULFILLED;
         state.error = null;
+        state.bookings = state.bookings.filter((booking) => booking.id !== payload.bookingId);
+        state.isGettingBookings = false;
+      })
+      .addCase(addBooking.fulfilled, (state, { payload }) => {
+        state.dataStatus = DataStatus.FULFILLED;
+        state.error = null;
+        state.bookings = [...state.bookings, payload];
         state.isGettingBookings = false;
       })
       .addMatcher(isAnyOf(deleteBooking.pending, addBooking.pending), state => {
@@ -44,7 +51,6 @@ const { actions, reducer } = createSlice({
 
         state.dataStatus = DataStatus.REJECTED;
         state.error = payload.message;
-        state.bookings = null;
         state.isGettingBookings = false;
       });
   },
