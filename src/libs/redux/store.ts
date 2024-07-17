@@ -6,6 +6,7 @@ import {
 } from '@reduxjs/toolkit';          
 import { authApi } from '@/libs/api/authApi';
 import { type TripsApi, tripsApi } from '@/libs/api/tripsApi';
+import { type BookingsApi, bookingsApi } from '@/libs/api/bookings';
 import { authReducer } from './slices/auth/auth';
 import { tripsReducer } from './slices/trips';
 import { storageApi, type Storage } from '@/libs/storage/storage';
@@ -20,6 +21,7 @@ type RootReducer = {
 type ExtraArguments = {
   authApi: typeof authApi;
   tripsApi: TripsApi;
+  bookingsApi: BookingsApi
   storageApi: Storage;
 };
 
@@ -57,6 +59,7 @@ class Store {
     return {
       authApi,
       tripsApi,
+      bookingsApi,
       storageApi
     };
   }
