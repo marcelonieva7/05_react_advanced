@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
-import { type Booking } from '@/@types';
 import { AppRoutes } from '@/libs/router/appRoutes';
 import { RouterProvider } from '@/libs/router/routerProvider';
 import { Home } from '@/pages/home/Home';
@@ -19,7 +18,6 @@ import { Loader } from '@/components/loader/loader';
 
 import './App.css';
 function App(): JSX.Element {
-  const [ bookings, setBookings ] = useState<Booking[]>([]);
   const { user, isGetAuth } = useAppSelector(({ auth }) => auth);
   const dispatch = useAppDispatch()
 
@@ -47,7 +45,7 @@ function App(): JSX.Element {
             {
               element: (
                 <ProtectedRoute>
-                  <Bookings setBookings={setBookings} bookings={bookings} />
+                  <Bookings />
                 </ProtectedRoute>
               ),
               path: AppRoutes.BOOKINGS,
@@ -55,7 +53,7 @@ function App(): JSX.Element {
             {
               element: (
                 <ProtectedRoute>
-                  <Trip setBookings={setBookings} />
+                  <Trip />
                 </ProtectedRoute>
               ),
               path: `${AppRoutes.TRIP}/:tripId`,
