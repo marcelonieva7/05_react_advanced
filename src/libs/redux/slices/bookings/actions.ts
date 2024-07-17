@@ -1,4 +1,4 @@
-import { type BookingsGetResponseDto, type BookingAddResponseDto } from '@/@types/api';
+import { type BookingsGetResponseDto, type BookingAddRequestDto } from '@/@types/api';
 import { type AsyncThunkConfig } from '@/@types/redux';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ActionType } from './common';
@@ -22,7 +22,7 @@ const getAllBookings = createAsyncThunk<
 
 const addBooking = createAsyncThunk<
   BookingsGetResponseDto,
-  BookingAddResponseDto,
+  BookingAddRequestDto,
   AsyncThunkConfig
 >(
   ActionType.ADD_BOOKING,

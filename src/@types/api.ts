@@ -25,10 +25,10 @@ type TripResponseDto = Trip
 
 type BookingsGetResponseDto = Booking
 
-type BookingAddResponseDto = Pick<Booking, ("tripId" | "guests" | "date")>
+type BookingAddRequestDto = Pick<Booking, ("tripId" | "guests" | "date")>
 
 export {
-  type BookingAddResponseDto,
+  type BookingAddRequestDto,
   type BookingsGetResponseDto,
   type UserSignUpRequestDto,
   type UserSignUpResponseDto,

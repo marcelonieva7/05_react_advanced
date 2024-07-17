@@ -2,7 +2,7 @@ import { httpApi, type Http } from "../http/http";
 import { ContentType, HTTPMethod } from '@/constants/http'
 import { API_BASE_URL, ApiPath } from "@/constants/api";
 import {
-  type BookingAddResponseDto,
+  type BookingAddRequestDto,
   type BookingsGetResponseDto
 } from '@/@types/api'
 
@@ -32,7 +32,7 @@ class BookingsApi {
     );
   }
 
-  public addBooking(payload: BookingAddResponseDto): Promise<BookingsGetResponseDto> {
+  public addBooking(payload: BookingAddRequestDto): Promise<BookingsGetResponseDto> {
     return this.#httpApi.load(
       `${this.#apiPath}${ApiPath.BOOKINGS}`,
       {
