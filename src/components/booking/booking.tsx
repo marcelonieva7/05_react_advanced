@@ -26,7 +26,7 @@ const Booking: FC<BookingProps> = ({ booking }) => {
     })
   }
   return (
-    <li data-test-id="booking" className={styles["booking"]}> {/* ${isDeleting ? styles["booking--deleting"] : ""} */}
+    <li data-test-id="booking" className={`${styles["booking"]} ${isLoading ? styles["booking--deleting"] : ''}`}>
       <h3 data-test-id="booking-title" className={styles["booking__title"]}>{trip.title}</h3>
       <span data-test-id="booking-guests" className={styles["booking__guests"]}>
         {`${guests} guests`}
@@ -45,7 +45,7 @@ const Booking: FC<BookingProps> = ({ booking }) => {
         disabled={isLoading}
       >
         <span className="visually-hidden">Cancel booking</span>
-          {isLoading ? "..." : "×"}
+          {isLoading ? <div className={styles.loader}/> : "×"}
       </button>
     </li>
   )
