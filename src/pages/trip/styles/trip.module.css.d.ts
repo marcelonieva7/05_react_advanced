@@ -1,1 +1,1 @@
-declare const styles: {readonly 'trip-page': string;};export default styles;
+declare const styles: {readonly 'trip-page': string;readonly 'trip-not-found': string;};export default styles;

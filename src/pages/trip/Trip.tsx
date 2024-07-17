@@ -1,15 +1,15 @@
 import { type FC, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { TripInfo } from '@/components/tripInfo/tripInfo';
 import { BookTripModal } from "@/components/bookTripModal/bookTripModal";
-import { AppRoutes } from "@/libs/router/appRoutes";
-
-import styles from './styles/trip.module.css'
+import { Loader } from "@/components/loader/loader";
+import { TripInfo } from '@/components/tripInfo/tripInfo';
+import { DataStatus } from "@/constants/redux";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { tripsActions } from "@/libs/redux/slices/trips";
-import { DataStatus } from "@/constants/redux";
-import { Loader } from "@/components/loader/loader";
+import { AppRoutes } from "@/libs/router/appRoutes";
+
+import styles from './styles/trip.module.css'
 
 const TripNotFound: FC = () => {
   const [count, setCount] = useState(5);
@@ -26,10 +26,10 @@ const TripNotFound: FC = () => {
   }, [navigate]);
 
   return (
-    <>
+    <div className={styles["trip-not-found"]}>
       <h2>Trip not found</h2>
       <h3>Redirecting to the main page in {count} seconds</h3>
-    </>
+    </div>
   )
 }
 

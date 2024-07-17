@@ -1,3 +1,8 @@
 .trip-page {
   padding: 60px 20px;
 }
+
+.trip-not-found {
+  text-align: center;
+  margin-block: auto;
+}
