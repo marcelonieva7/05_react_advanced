@@ -1,8 +1,10 @@
+type TripLevel = 'easy' | 'moderate' | 'difficult'
+
 type Trip = {
   id: string;
   title: string;
   description: string;
-  level: string;
+  level: TripLevel;
   duration: number;
   price: number;
   image: string;

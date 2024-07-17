@@ -1,4 +1,4 @@
-import { type User } from "./index"
+import { Trip, type User } from "./index"
 
 type UserSignUpRequestDto = {
   password: string
@@ -21,10 +21,13 @@ type UserSignInResponseDto = {
 
 type UserAuthenticateResponseDto = User
 
+type TripResponseDto = Trip
+
 export {
   type UserSignUpRequestDto,
   type UserSignUpResponseDto,
   type UserSignInRequestDto,
   type UserSignInResponseDto,
-  type UserAuthenticateResponseDto
+  type UserAuthenticateResponseDto,
+  type TripResponseDto
 }
