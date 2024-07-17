@@ -26,7 +26,7 @@ const getTripById = createAsyncThunk<
   {tripId: string},
   AsyncThunkConfig
 >(
-  ActionType.GET_ALL_TRIPS,
+  ActionType.GET_TRIP_BY_ID,
   async ({tripId}, { extra: { tripsApi }, rejectWithValue }) => {
     try {
       return await tripsApi.getById(tripId);
