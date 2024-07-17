@@ -7,12 +7,14 @@ import {
 import { authApi } from '@/libs/api/authApi';
 import { type TripsApi, tripsApi } from '@/libs/api/tripsApi';
 import { authReducer } from './slices/auth/auth';
+import { tripsReducer } from './slices/trips';
 import { storageApi, type Storage } from '@/libs/storage/storage';
 import { authErrorMiddleware } from './middleware/authErrorMiddleware';
 import { notificationErrorMiddleware } from './middleware/notificationErrorMiddleware';
   
 type RootReducer = {
   auth: ReturnType<typeof authReducer>;
+  trips: ReturnType<typeof tripsReducer>;
 };
   
 type ExtraArguments = {
@@ -45,7 +47,8 @@ class Store {
         ]);
       },
       reducer: {
-        auth: authReducer
+        auth: authReducer,
+        trips: tripsReducer
       }
     });
   }
